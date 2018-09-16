@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.tda367.Controller">
+   <top>
+      <HBox fx:id="top" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <HBox fx:id="bottom" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <Pane fx:id="middle" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="dice1" layoutX="142.0" layoutY="92.0" text="Dice 1" textAlignment="RIGHT" />
+            <Label fx:id="dice2" layoutX="221.0" layoutY="92.0" text="Dice2" />
+            <Button layoutX="180.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleRoll" text="Roll" />
+         </children>
+      </Pane>
+   </center>
+   <left>
+      <VBox fx:id="left" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <VBox fx:id="right" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
