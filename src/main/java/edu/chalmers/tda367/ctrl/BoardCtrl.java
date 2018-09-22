@@ -1,4 +1,4 @@
-package edu.chalmers.tda367;
+package edu.chalmers.tda367.ctrl;
 
 import edu.chalmers.tda367.core.Monopoly;
 import javafx.event.ActionEvent;
@@ -6,11 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.util.Pair;
 
-public class Controller {
+public class BoardCtrl implements Controller {
   Monopoly monopoly;
   public Label dice1 = null;
   public Label dice2 = null;
 
+  @Override
   public void connectModel(Monopoly monopoly) {
     this.monopoly = monopoly;
   }
