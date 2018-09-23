@@ -33,7 +33,7 @@ public class TestModel {
 
   @Test
   public void testMove() {
-    final int score = 6;
+    final int score = 3;
     m.setDices(new MockDices(score));
 
     Player p = m.getActivePlayer();
@@ -41,7 +41,7 @@ public class TestModel {
 
     assertEquals(p, m.getActivePlayer());  // No player change after move, only after change turn
     Space start = m.getSpaces().next();
-    assertEquals(getSpace(score), p.getPosition());
+    assertEquals(getSpace(score*2), p.getPosition());
   }
 
   private Space getSpace(int index) {

@@ -1,5 +1,7 @@
 package edu.chalmers.tda367.ctrl;
 
+import edu.chalmers.tda367.core.Event;
+import edu.chalmers.tda367.core.EventHandler;
 import edu.chalmers.tda367.core.Monopoly;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,14 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Pair;
 
 /**
  * This class is the controller for the monopoly board. The source is an FXML file.
  *
  * @author alexg
  */
-public class BoardCtrl implements ModelController {
+public class BoardCtrl implements ModelController, EventHandler {
   private Monopoly monopoly;
 
   public Label dice1;
@@ -36,13 +37,24 @@ public class BoardCtrl implements ModelController {
   @Override
   public void connectModel(Monopoly monopoly) {
     this.monopoly = monopoly;
+    monopoly.register(this);
   }
 
   @FXML
   private void handleRoll(final ActionEvent event) {
-    Pair<Integer, Integer> values = monopoly.move();
-    dice1.setText(values.getValue().toString());
-    dice2.setText(values.getKey().toString());
+    monopoly.move();
+  }
+
+  @Override
+  public void onEvent(Event event) {
+    switch (event.getTag()) {
+      case DICE_FST:
+        dice1.setText(event.getValue().toString());
+        break;
+      case DICE_SEC:
+        dice2.setText(event.getValue().toString());
+        break;
+    }
   }
 
   /**

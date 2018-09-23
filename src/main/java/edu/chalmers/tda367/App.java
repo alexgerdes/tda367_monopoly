@@ -15,7 +15,6 @@ public class App extends Application {
     Monopoly monopoly = Monopoly.createMonopoly(Arrays.asList(names));
     MainStage stage = new MainStage(monopoly);
 
-    primaryStage = stage;
     stage.show();
   }
 

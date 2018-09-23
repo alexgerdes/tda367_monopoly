@@ -1,5 +1,5 @@
 
-package edu.chalmers.tda367.service;
+package edu.chalmers.tda367.core;
 
 /**
  * Contract for any observer

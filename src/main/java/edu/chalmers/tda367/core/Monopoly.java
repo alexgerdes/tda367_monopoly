@@ -55,16 +55,14 @@ public class Monopoly {
   /**
    * Move the activePlayer player to the next space based on the roll of the dices.
    */
-  public Pair<Integer, Integer> move() {
+  public void move() {
     Space currentSpace = activePlayer.getPosition();
-    dices.roll();  // TODO GUI updated using observer
+    dices.roll();
     Space nextSpace = board.getSpace(currentSpace, dices.getTotal());
     activePlayer.setPosition(nextSpace);
 
     if (board.passesStart(currentSpace, nextSpace))
       activePlayer.income(BONUS);  // TODO GUI updated using observer
-
-    return dices.getValues();  // TODO change to observer (or eventbus) later
   }
 
   public Iterator<Player> getPlayers() {
@@ -82,6 +80,10 @@ public class Monopoly {
    */
   public Player getActivePlayer() {
     return activePlayer;
+  }
+
+  public void register(EventHandler handler) {
+    EventBus.getBus().register(handler);
   }
 
   // test function

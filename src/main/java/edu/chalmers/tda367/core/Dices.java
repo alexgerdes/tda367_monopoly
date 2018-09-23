@@ -13,8 +13,8 @@ public class Dices {
   private final Random rand = new Random();
   private final int MAX = 6;  // Number of sides of a dice
 
-  private int first;   // Values for dices
-  private int second;
+  private int first = 1;   // Values for dices
+  private int second = 1;
 
   /**
    * Roll both dices: update the dice values with random integers between 1 and MAX.
@@ -22,9 +22,12 @@ public class Dices {
   public void roll() {
     first  = genInt();
     second = genInt();
+
+    EventBus.getBus().publish(new Event(Event.Tag.DICE_FST, first));
+    EventBus.getBus().publish(new Event(Event.Tag.DICE_SEC, second));
   }
 
-  private int genInt() {
+  protected int genInt() {
     return rand.nextInt(MAX) + 1;
   }
 

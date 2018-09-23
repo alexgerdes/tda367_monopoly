@@ -1,4 +1,4 @@
-package edu.chalmers.tda367.service;
+package edu.chalmers.tda367.core;
 
 public final class Event {
 

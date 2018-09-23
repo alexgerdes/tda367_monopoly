@@ -12,12 +12,7 @@ public class MockDices extends Dices {
     this.value = value;
   }
 
-  @Override
-  public int getTotal() {
+  protected int genInt() {
     return value;
-  }
-
-  public void setValue(int value) {
-    this.value = value;
   }
 }

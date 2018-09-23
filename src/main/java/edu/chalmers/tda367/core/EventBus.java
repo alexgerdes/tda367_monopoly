@@ -1,4 +1,4 @@
-package edu.chalmers.tda367.service;
+package edu.chalmers.tda367.core;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +14,16 @@ public class EventBus {
   private final List<EventHandler> handlers;
   private boolean trace = true;
 
-  public EventBus(boolean trace) {
+  private static EventBus bus;
+
+  public static EventBus getBus() {
+    if (bus == null)
+      bus = new EventBus();
+
+    return bus;
+  }
+
+  private EventBus() {
     handlers = Collections.synchronizedList(new ArrayList<>());  // make it threadsafe
     this.trace = trace;
   }
