@@ -7,23 +7,6 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Resources {
-  private static Resources resources = null;
-  private static ClassLoader classLoader;
-
-  private Resources() {
-    try {
-      classLoader = Class.forName("edu.chalmers.tda367.App").getClassLoader(); // this.getClass().getClassLoader();
-    } catch (Exception e){
-      System.out.println("this should not happen!");
-    }
-  }
-
-  public static Resources getInstance() {
-    if (resources == null) resources = new Resources();
-
-    return resources;
-  }
-
   public static URL getURL(String name) throws IOException {
     URL url = Resources.class.getClassLoader().getResource(name);
 
@@ -37,15 +20,17 @@ public class Resources {
     return new File(getURL(name).getFile());
   }
 
-  public static FXMLLoader getFXML(String name) {
-    FXMLLoader loader = null;
+  public static <C> C getFXML(String name) {
+    C controller = null;
 
     try {
-      loader = new FXMLLoader(Resources.getURL(name));
+      FXMLLoader loader = new FXMLLoader(Resources.getURL(name));
+      loader.load();
+      controller = loader.getController();
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    return loader;
+    return controller;
   }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="80.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.tda367.ctrl.StreetCtrl">
+   <top>
+      <Label fx:id="street" text="Label" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <ListView fx:id="players" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

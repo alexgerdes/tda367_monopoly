@@ -9,12 +9,11 @@ import java.util.Arrays;
 
 public class App extends Application {
   @Override
-  public void start(Stage primaryStage) throws Exception {
+  public void start(Stage primaryStage) {
     String[] names = {"Mats", "Lise", "Sofie"};
 
     Monopoly monopoly = Monopoly.createMonopoly(Arrays.asList(names));
-    MainStage stage = new MainStage();
-    stage.connectModel(monopoly);
+    MainStage stage = new MainStage(monopoly);
 
     primaryStage = stage;
     stage.show();

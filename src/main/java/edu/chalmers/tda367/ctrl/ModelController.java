@@ -2,6 +2,6 @@ package edu.chalmers.tda367.ctrl;
 
 import edu.chalmers.tda367.core.Monopoly;
 
-public interface Controller {
+public interface ModelController {
   void connectModel(Monopoly monopoly);
 }
