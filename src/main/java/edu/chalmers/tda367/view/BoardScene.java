@@ -12,6 +12,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * This view class draws the monopoly board.
+ *
+ * @author alex
+ */
 public class BoardScene {
   private int WIDTH  = 11 * 80 + 20;
   private int HEIGHT = 11 * 80 + 40;
@@ -61,6 +66,11 @@ public class BoardScene {
     }
   }
 
+  /**
+   * Return the scene created with this class.
+   *
+   * @return the monopoly board scene
+   */
   public Scene getScene() {
     return scene;
   }
