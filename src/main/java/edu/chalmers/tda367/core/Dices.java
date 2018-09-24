@@ -1,7 +1,6 @@
 package edu.chalmers.tda367.core;
 
-import edu.chalmers.tda367.core.event.DiceEvent;
-import javafx.util.Pair;
+import edu.chalmers.tda367.util.Pair;
 
 import java.util.Random;
 
@@ -24,7 +23,6 @@ class Dices {
     first  = genInt();
     second = genInt();
 
-    Monopoly.bus.post(new DiceEvent(first, second));
   }
 
   protected int genInt() {

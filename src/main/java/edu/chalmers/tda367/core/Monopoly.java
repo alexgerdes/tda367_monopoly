@@ -1,7 +1,7 @@
 package edu.chalmers.tda367.core;
 
 import com.google.common.eventbus.EventBus;
-import javafx.util.Pair;
+import edu.chalmers.tda367.core.event.DiceEvent;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,7 +23,7 @@ public class Monopoly {
   private final Board board;
   private Player activePlayer;
 
-  static EventBus bus;
+  private EventBus bus = new EventBus();
 
   public static Monopoly createMonopoly(List<String> names) {
     return new Monopoly(names);
@@ -33,8 +33,6 @@ public class Monopoly {
     this.dices   = new Dices();
     this.board   = Board.createMonopolyBoard();
     this.players = new ArrayList<Player>();
-
-    bus = new EventBus();
 
     Space start = board.getStart();
 
@@ -62,7 +60,10 @@ public class Monopoly {
    */
   public void move() {
     Space currentSpace = activePlayer.getPosition();
+
     dices.roll();
+    bus.post(new DiceEvent(dices.getValues()));
+
     Space nextSpace = board.getSpace(currentSpace, dices.getTotal());
     activePlayer.setPosition(nextSpace);
 
