@@ -1,5 +1,6 @@
 package edu.chalmers.tda367.core;
 
+import com.google.common.eventbus.EventBus;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class Monopoly {
   private final Board board;
   private Player activePlayer;
 
+  static EventBus bus;
+
   public static Monopoly createMonopoly(List<String> names) {
     return new Monopoly(names);
   }
@@ -30,6 +33,8 @@ public class Monopoly {
     this.dices   = new Dices();
     this.board   = Board.createMonopolyBoard();
     this.players = new ArrayList<Player>();
+
+    bus = new EventBus();
 
     Space start = board.getStart();
 
@@ -82,8 +87,13 @@ public class Monopoly {
     return activePlayer;
   }
 
-  public void register(EventHandler handler) {
-    EventBus.getBus().register(handler);
+  /**
+   * Add a event handler.
+   *
+   * @param handler the handler
+   */
+  public void register(Object handler) {
+    bus.register(handler);
   }
 
   // test function

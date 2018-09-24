@@ -1,5 +1,6 @@
 package edu.chalmers.tda367.core;
 
+import edu.chalmers.tda367.core.event.DiceEvent;
 import javafx.util.Pair;
 
 import java.util.Random;
@@ -9,7 +10,7 @@ import java.util.Random;
  *
  * @author alexg
  */
-public class Dices {
+class Dices {
   private final Random rand = new Random();
   private final int MAX = 6;  // Number of sides of a dice
 
@@ -23,8 +24,7 @@ public class Dices {
     first  = genInt();
     second = genInt();
 
-    EventBus.getBus().publish(new Event(Event.Tag.DICE_FST, first));
-    EventBus.getBus().publish(new Event(Event.Tag.DICE_SEC, second));
+    Monopoly.bus.post(new DiceEvent(first, second));
   }
 
   protected int genInt() {

@@ -1,8 +1,8 @@
 package edu.chalmers.tda367.ctrl;
 
-import edu.chalmers.tda367.core.Event;
-import edu.chalmers.tda367.core.EventHandler;
+import com.google.common.eventbus.Subscribe;
 import edu.chalmers.tda367.core.Monopoly;
+import edu.chalmers.tda367.core.event.DiceEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
  *
  * @author alexg
  */
-public class BoardCtrl implements ModelController, EventHandler {
+public class BoardCtrl implements ModelController {
   private Monopoly monopoly;
 
   public Label dice1;
@@ -45,16 +45,10 @@ public class BoardCtrl implements ModelController, EventHandler {
     monopoly.move();
   }
 
-  @Override
-  public void onEvent(Event event) {
-    switch (event.getTag()) {
-      case DICE_FST:
-        dice1.setText(event.getValue().toString());
-        break;
-      case DICE_SEC:
-        dice2.setText(event.getValue().toString());
-        break;
-    }
+  @Subscribe
+  public void onEvent(DiceEvent e) {
+    dice1.setText(Integer.toString(e.getFirst()));
+    dice2.setText(Integer.toString(e.getSecond()));
   }
 
   /**

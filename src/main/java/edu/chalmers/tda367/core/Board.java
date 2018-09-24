@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author alexg
  */
-public class Board {
+class Board {
   private final List<Space> spaces;
 
   /**
