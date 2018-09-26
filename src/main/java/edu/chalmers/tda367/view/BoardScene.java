@@ -18,23 +18,33 @@ import java.util.Map;
  * @author alex
  */
 public class BoardScene {
+  // Config
   private int WIDTH  = 11 * 80 + 20;
   private int HEIGHT = 11 * 80 + 40;
-  BoardCtrl ctrl;
-  Scene scene;
-  Map<Space, StreetCtrl> spaceMap = new HashMap<>();
+
+  // Connections
+  private BoardCtrl ctrl;     // Corresponding JavaFX controller
+  private Scene scene;
+  private Monopoly monopoly;  // the model
+
+  // Mapping between space and view of space (Street)
+  private Map<Space, StreetCtrl> spaceMap = new HashMap<>();
+
 
   public BoardScene(Monopoly monopoly) {
+    this.monopoly = monopoly;
     ctrl = Resources.getFXML("monopoly_board.fxml");
     scene = new Scene(ctrl.root, WIDTH, HEIGHT);
     ctrl.connectModel(monopoly);
 
-    createBoard(monopoly.getSpaces());
-
-    placePlayers(monopoly.getPlayers());
+    createBoard();
+    setPlayers();
+    setDices();
   }
 
-  private void createBoard(Iterator<Space> spaces) {
+  private void createBoard() {
+    Iterator<Space> spaces = monopoly.getSpaces();
+
     for (int n = 0; spaces.hasNext(); n++) {
       Space space = spaces.next();
       StreetCtrl street = createStreet(space.getName());
@@ -58,12 +68,20 @@ public class BoardScene {
     return street;
   }
 
-  private void placePlayers(Iterator<Player> players) {
+  private void setPlayers() {
+    Iterator<Player> players = monopoly.getPlayers();
+
     while (players.hasNext()) {
       Player player = players.next();
       StreetCtrl street = spaceMap.get(player.getPosition());
       street.addPlayer(player.getName());
     }
+
+    ctrl.setActivePlayer(monopoly.getActivePlayer().getName());
+  }
+
+  private void setDices() {
+    ctrl.setDices(monopoly.getDices());
   }
 
   /**

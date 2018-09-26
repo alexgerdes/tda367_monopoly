@@ -2,6 +2,7 @@ package edu.chalmers.tda367.core;
 
 import com.google.common.eventbus.EventBus;
 import edu.chalmers.tda367.core.event.DiceEvent;
+import edu.chalmers.tda367.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -77,6 +78,10 @@ public class Monopoly {
 
   public Iterator<Space> getSpaces() {
     return board.getSpaces();
+  }
+
+  public Pair<Integer, Integer> getDices() {
+    return dices.getValues();
   }
 
   /**

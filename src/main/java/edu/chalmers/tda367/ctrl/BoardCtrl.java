@@ -3,6 +3,7 @@ package edu.chalmers.tda367.ctrl;
 import com.google.common.eventbus.Subscribe;
 import edu.chalmers.tda367.core.Monopoly;
 import edu.chalmers.tda367.core.event.DiceEvent;
+import edu.chalmers.tda367.util.Pair;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -47,8 +48,21 @@ public class BoardCtrl implements ModelController {
 
   @Subscribe
   public void onEvent(DiceEvent e) {
-    dice1.setText(Integer.toString(e.getFirst()));
-    dice2.setText(Integer.toString(e.getSecond()));
+    setDices(e.getDices());
+  }
+
+  public void setDices(Pair<Integer, Integer> dices) {
+    dice1.setText(Integer.toString(dices.fst()));
+    dice2.setText(Integer.toString(dices.snd()));
+  }
+
+  /**
+   * Set active player label.
+   *
+   * @param name player's name
+   */
+  public void setActivePlayer(String name) {
+    activePlayer.setText(name);
   }
 
   /**
