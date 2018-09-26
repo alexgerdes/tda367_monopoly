@@ -1,5 +1,7 @@
 package edu.chalmers.tda367.core;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * A single player of the game
  * Handles everything that has to do with a single player!
@@ -7,16 +9,17 @@ package edu.chalmers.tda367.core;
  * @author alexg
  */
 public class Player {
-  private static int id_count = 1;  // Simple id generator, not threadsafe
+   // Simple id generator
+  private final static AtomicInteger id_count = new AtomicInteger();
 
-  private final int id;             // Unique identifier for the player
+  private final Integer id;             // Unique identifier for the player
   private String name;
   //private final Piece piece;
   private int balance;
   private Space position;    // The actual position
 
   public Player(String name, Piece piece, int balance, Space position) {
-    this.id = id_count++;
+    this.id = id_count.incrementAndGet();
     this.name = name;
     //this.piece = piece;
     this.balance = balance;

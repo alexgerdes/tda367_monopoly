@@ -1,6 +1,7 @@
 package edu.chalmers.tda367;
 
 import edu.chalmers.tda367.core.Monopoly;
+import edu.chalmers.tda367.ctrl.BoardCtrl;
 import edu.chalmers.tda367.view.MainStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -13,7 +14,8 @@ public class App extends Application {
     String[] names = {"Mats", "Lise", "Sofie"};
 
     Monopoly monopoly = Monopoly.createMonopoly(Arrays.asList(names));
-    MainStage stage = new MainStage(monopoly);
+    BoardCtrl ctrl = new BoardCtrl(monopoly);
+    MainStage stage = new MainStage(monopoly, ctrl);
 
     stage.show();
   }
